@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-import os
 import sys
-import fileinput
 import argparse
 import glob
 from openpyxl import Workbook
 import re
-
 import time
+
+version = "1.0.0"
 
 args = None
 workbook = Workbook()
@@ -79,6 +78,7 @@ def setup_arguments():
     parser.add_argument('-r', dest="use_recursion", action="store_true", help="Search recursively, i.e. consider subdirectories. By default, the script only looks in the current directory.")
     parser.add_argument('-f', "--filename", nargs="?", dest="filename", default="output.xlsx", help="The filename for the output excel file. Default is 'output.xlsx'")
     parser.add_argument('-v', "--verbose", dest="verbose", action="store_true", help="Print the progress and other useful info.")
+    parser.add_argument('--version', action='version', version="Program version: {}".format(version))
 
     global args
     args = parser.parse_args()
