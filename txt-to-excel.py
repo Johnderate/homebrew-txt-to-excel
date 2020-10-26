@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-import os
 import sys
-import fileinput
 import argparse
 import glob
 from openpyxl import Workbook
 import re
-
 import time
 
 args = None
