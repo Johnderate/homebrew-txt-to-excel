@@ -28,7 +28,7 @@ class TxtToExcel < Formula
     sha256 "18e11f9a650128a12580a58e3daba14e00a11d9e907c554a17ea016bf1a2c71b"
   end
 
-  depends_on "python@3.x"
+  depends_on "python@3.7"
 
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
