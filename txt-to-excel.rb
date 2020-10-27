@@ -33,5 +33,7 @@ class TxtToExcel < Formula
   def install
     # ENV.deparallelize  # if your formula fails when building in parallel
     virtualenv_install_with_resources
+    bin.install "txt-to-excel.py"
+
   end
 end
