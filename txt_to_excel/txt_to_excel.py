@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
+
 import sys
 import argparse
 import glob
@@ -89,7 +91,3 @@ def setup_worksheet():
     worksheet["B1"] = "From"
     worksheet["C1"] = "Subject"
     worksheet["D1"] = "Text"
-    
-
-if __name__ == "__main__":
-    main()
