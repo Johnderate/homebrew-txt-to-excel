@@ -21,5 +21,5 @@ setup(
     author = "Jannis Krämer",
     author_email = "jannis@4kraemer.me",
     url = "https://github.com/Johnderate/homebrew-txt-to-excel",
-    install_requires=['et_xmlfile', 'jdcal', 'openpyxl']
+    #install_requires=['et_xmlfile', 'jdcal', 'openpyxl']
 )

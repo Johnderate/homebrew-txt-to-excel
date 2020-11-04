@@ -6,9 +6,9 @@ class TxtToExcel < Formula
 
   desc "A python program to extract info from specially formed txt-files into a Microsoft Excel file."
   homepage "https://github.com/Johnderate/homebrew-txt-to-excel"
-  url "https://github.com/Johnderate/homebrew-txt-to-excel/blob/main/txt-to-excel.py"
+  #url "https://github.com/Johnderate/homebrew-txt-to-excel/blob/main/txt-to-excel.py"
+  url "git@github.com:Johnderate/homebrew-txt-to-excel.git", :using => :git, :branch => 'main'
   version "1.0.0"
-  sha256 ""
   license "GPL-3.0-only"
 
   # Python dependencies
@@ -28,12 +28,11 @@ class TxtToExcel < Formula
     sha256 "18e11f9a650128a12580a58e3daba14e00a11d9e907c554a17ea016bf1a2c71b"
   end
 
-  depends_on "python@3.7"
+  depends_on "python@3.9"
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
     virtualenv_install_with_resources
-    bin.install "txt-to-excel.py"
+    #bin.install "txt-to-excel.py"
 
   end
 end
