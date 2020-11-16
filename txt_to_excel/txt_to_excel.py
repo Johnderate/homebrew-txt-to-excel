@@ -70,10 +70,10 @@ def process_file(index, file):
 def setup_arguments():
     usage_examples = '''Example usages:
     Make all files in this directory into an Excel file called "abc.xlsx":
-        txt-to-excel.py --filename abc.xlsx
+        txt-to-excel --filename abc.xlsx
 
     Make all files in the current directory that include #Seenotrettung into an Excel file using grep:
-        grep -rl "#Seenotrettung" . | txt-to-excel.py -f seenotrettung.xlsx
+        grep -rl "#Seenotrettung" . | txt-to-excel -f seenotrettung.xlsx
     '''
 
     parser = argparse.ArgumentParser(description="Process txt into an excel worksheet. If no input is specified, the current directory is searched for txt files.", epilog=usage_examples, formatter_class=argparse.RawDescriptionHelpFormatter)
