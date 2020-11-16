@@ -9,14 +9,14 @@ Wenn Homebrew noch nicht installiert ist, dann Homebrew nach der [offiziellen An
 #### Schritt 2: Repository zu Homebrew hinzufügen
 Dieses Repository im Terminal als Tap hinzufügen:
 `brew tap Johnderate/txt-to-excel`
-Dadurch erkennt Homebrew die Formel aus diesem Repository und kann die Software installieren.
+Dadurch erkennt Homebrew die Formel aus diesem Repository und kann die Software installieren. Sollte `brew tap` zum ersten mal genutzt werden, fragt das Programm nach GitHub-Zugangsdaten, die man im Zweifelsfall noch anlegen muss. Diese einfach eingeben, dass bei der Eingabe des Passworts nichts zu sehen ist dient der Sicherheit und ist normal.
 
 #### Schritt 3: Formel installieren
-Da Homebrew diese Formel nun kennt kann sie wie eine normale Homebrew-Formel installiert werden. Dabei werden auch alle nötigen Abhängigkeiten installiert.
+Da Homebrew diese Formel nun kennt, kann sie wie eine normale Homebrew-Formel installiert werden. Dabei werden auch alle nötigen Abhängigkeiten installiert.
 `brew install txt-to-excel`
 
 ### Manuell (macOS, Linux – für Fortgeschrittene)
-txt-to-excel.py kann auch manuell installiert werden, indem es in ein dem Path hinzugefügtes Directory kopiert wird. Dann muss die Abhängigkeit `openpyxl`, die nicht Teil der standard Python Installation ist, manuell über pip installiert werden. Das Skript muss dann manuell auf dem neuesten Stand gehalten werden. Auch wenn der Stand des main-Branches durchgängig einsatzfähig sein sollte, empfehle ich trotzdem den Sourcecode des jeweils letzten releases herunterzuladen.
+txt-to-excel.py kann auch manuell installiert werden, indem es in ein dem Path hinzugefügtes Directory kopiert wird. Dann muss die Abhängigkeit `openpyxl`, die nicht Teil der standard Python Installation ist, manuell über pip installiert werden. Das Skript muss dann manuell auf dem neuesten Stand gehalten werden. Der jeweils aktuelle Stand des main-Branches sollte immer einsatzfähig sein. Der Aufbau des Skripts folgt Python-Konventionen, allerdings sind die Abhängigkeiten nicht in der setup.py aufgelistet, da dies zu Problemen mit homebrew führt.
 
 ## Nutzung
 Das Skript kann auf zwei Arten genutzt werden um Dateien zu verarbeiten:
