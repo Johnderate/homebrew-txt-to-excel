@@ -7,12 +7,15 @@ import glob
 from openpyxl import Workbook
 import re
 import time
+import csv
+import pkg_resources
 
-version = "1.0.0"
+version = "1.1.0"
 
 args = None
 workbook = Workbook()
 worksheet = workbook.active
+date_data = []
 
 def main():
     setup_arguments()
@@ -41,6 +44,13 @@ def process_stdin():
 def process_files(files):
     print("Found {} files, getting to work.".format(len(files)))
 
+    #read database of dates so we only do this once
+    data_file = pkg_resources.resource_filename(__name__, 'data/date_data.csv')
+    with open(data_file, "r") as dates_file:
+        reader_stream = csv.DictReader(dates_file, delimiter=';')
+        for row in reader_stream:
+            date_data.append(row)
+
     for index, file in enumerate(files, start=1):
         progress = round(index / len(files) * 100)
 
@@ -56,15 +66,36 @@ def process_file(index, file):
     
     with open(file, "r") as stream:
         data = stream.read()
+
     
     #global worksheet
-    data_to = re.search("TO: (.+?)\n", data).group(1)
-    data_from = re.search("FROM: (.+?)\n", data).group(1)
-    data_subject = re.search("SUBJECT: (.+?)\n", data).group(1)
-    data_message = re.search("\n\n.*$", data, re.DOTALL).group(0)
-    worksheet.append([data_to, data_from, data_subject, data_message])
+    data_to = search_for_pattern(data, "TO: (.+?)\n")
+    data_from = search_for_pattern(data, "FROM: (.+?)\n")
+    data_subject = search_for_pattern(data, "SUBJECT: (.+?)\n")
+    data_message = search_for_pattern(data, "\n\n.*$", 0)
+    
+    datetime = lookup_date(file)
+    data_date = datetime[0]
+    data_time = datetime[1]
+    worksheet.append([data_to, data_from, data_subject, data_message, data_date, data_time])
 
     if args.verbose: print("✅")
+
+def search_for_pattern(data, pattern, group=1):    
+    try:
+        return re.search(pattern, data, re.DOTALL).group(group)
+    except AttributeError:
+        return ""
+
+def lookup_date(file):
+    file_id = re.sub(r"\D", "", file)
+
+    for line in date_data:
+        if line['Ticket-ID'] == file_id:
+            return (line['Datum'], line['Uhrzeit'])
+        
+    return("", "")
+
 
 # Setup
 def setup_arguments():
@@ -91,3 +122,5 @@ def setup_worksheet():
     worksheet["B1"] = "From"
     worksheet["C1"] = "Subject"
     worksheet["D1"] = "Text"
+    worksheet["E1"] = "Date"
+    worksheet["F1"] = "Time"

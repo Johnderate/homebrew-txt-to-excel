@@ -1,6 +1,11 @@
 ## ❗ Achtung ❗
 Dieses Repository ist eine Auftragsarbeit für ein Forschungsprojekt der Universität Hamburg und hat nur sehr begrenzte Anwendungsgebiete darüber hinaus. Weil das spezifische Format, das hier geparsed wird, auch noch in weiteren Kontexten verwendet wird ist die Dokumentation hier trotzdem so ausführlich. Für die generelle Stapelverarbeitung von txt-Dateien in Excel-Tabellen ist dieses Skript nicht geeignet.
 
+## Changelog
+#### Version 1.1.0 
+* Das Skript wirft keine Fehler mehr wenn bestimmte Felder nicht befüllt sind oder nicht existieren
+* Die Excel-Datei wird mit Zeitstempeln aus der im Package integrierten CSV-Datei befüllt
+
 ## Installation
 ### Via brew (macOS)
 #### Schritt 1: Homebrew installieren
