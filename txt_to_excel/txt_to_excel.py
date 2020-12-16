@@ -9,8 +9,9 @@ import re
 import time
 import csv
 import pkg_resources
+import datetime
 
-version = "1.1.1"
+version = "1.2.0"
 
 args = None
 workbook = Workbook()
@@ -57,6 +58,11 @@ def process_files(files):
         if not args.verbose: print ("Progress: [{:<20}] {}%".format("–"*(round(progress/5)), progress), end="\r")
         process_file(index, file)
 
+    #Setup sorting
+    worksheet.auto_filter.ref = "A1:E{}".format(worksheet.max_row)
+    worksheet.auto_filter.add_sort_condition("E1:E{}".format(worksheet.max_row))
+    #print("A1:{}{}".format(chr(65+worksheet.max_column), worksheet.max_row))
+
     workbook.save(args.filename)
 
     print("✅ Successfully imported {} files into {}".format(len(files), args.filename))
@@ -66,18 +72,15 @@ def process_file(index, file):
     
     with open(file, "r") as stream:
         data = stream.read()
-
     
     #global worksheet
     data_to = search_for_pattern(data, "TO: (.+?)\n")
     data_from = search_for_pattern(data, "FROM: (.+?)\n")
     data_subject = search_for_pattern(data, "SUBJECT: (.+?)\n")
     data_message = search_for_pattern(data, "\n\n.*$", 0)
-    
-    datetime = lookup_date(file)
-    data_date = datetime[0]
-    data_time = datetime[1]
-    worksheet.append([data_to, data_from, data_subject, data_message, data_date, data_time])
+    data_date = lookup_date(file)
+
+    worksheet.append([data_to, data_from, data_subject, data_message, data_date])
 
     if args.verbose: print("✅")
 
@@ -92,9 +95,10 @@ def lookup_date(file):
 
     for line in date_data:
         if line['Ticket-ID'] == file_id:
-            return (line['Datum'], line['Uhrzeit'])
+            date_time = "{} {}".format(line['Datum'], line['Uhrzeit'])
+            return datetime.datetime.strptime(date_time, "%d.%m.%y %H:%M:%S")   
         
-    return("", "")
+    return("")
 
 
 # Setup
@@ -118,9 +122,27 @@ def setup_arguments():
 
 def setup_worksheet():
     # Set titles for our Columns
+    headline_style = "Headline 2"
+    column_width_small = 25
+    column_width_medium = 50
+    column_width_large = 80
+
     worksheet["A1"] = "To"
+    worksheet["A1"].style = headline_style
+    worksheet.column_dimensions["A"].width = column_width_small
+
     worksheet["B1"] = "From"
+    worksheet["B1"].style = headline_style
+    worksheet.column_dimensions["B"].width = column_width_medium
+
     worksheet["C1"] = "Subject"
+    worksheet["C1"].style = headline_style
+    worksheet.column_dimensions["C"].width = column_width_small
+
     worksheet["D1"] = "Text"
-    worksheet["E1"] = "Date"
-    worksheet["F1"] = "Time"
+    worksheet["D1"].style = headline_style
+    worksheet.column_dimensions["D"].width = column_width_large
+
+    worksheet["E1"] = "Timestamp"
+    worksheet["E1"].style = headline_style
+    worksheet.column_dimensions["E"].width = column_width_small
