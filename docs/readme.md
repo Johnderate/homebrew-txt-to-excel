@@ -6,6 +6,9 @@ Dieses Repository ist eine Auftragsarbeit für ein Forschungsprojekt der Univers
 * Das Skript wirft keine Fehler mehr wenn bestimmte Felder nicht befüllt sind oder nicht existieren
 * Die Excel-Datei wird mit Zeitstempeln aus der im Package integrierten CSV-Datei befüllt
 
+#### Version 1.1.1
+* Der Ordner `data/` wurde bei der Installation nicht mit installiert
+
 ## Installation
 ### Via brew (macOS)
 #### Schritt 1: Homebrew installieren

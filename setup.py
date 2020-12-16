@@ -12,6 +12,7 @@ with open("docs/README.md", "rb") as f:
 setup(
     name = "uhh-txt-to-excel",
     packages = ["txt_to_excel"],
+    package_data={'txt_to_excel': ['data/*']},
     entry_points = {
         "console_scripts": ['txt-to-excel = txt_to_excel.txt_to_excel:main']
     },
