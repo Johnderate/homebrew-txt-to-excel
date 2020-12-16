@@ -7,7 +7,7 @@ class TxtToExcel < Formula
   desc "A python program to extract info from specially formed txt-files into a Microsoft Excel file."
   homepage "https://github.com/Johnderate/homebrew-txt-to-excel"
   url "https://github.com/Johnderate/homebrew-txt-to-excel.git", :using => :git, :branch => 'main'
-  version "1.0.0"
+  version "1.1.0"
   license "GPL-3.0-only"
 
   # Python dependencies
