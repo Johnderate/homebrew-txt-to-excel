@@ -10,7 +10,7 @@ import time
 import csv
 import pkg_resources
 
-version = "1.1.0"
+version = "1.1.1"
 
 args = None
 workbook = Workbook()
