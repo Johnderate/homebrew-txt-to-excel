@@ -9,6 +9,11 @@ Dieses Repository ist eine Auftragsarbeit für ein Forschungsprojekt der Univers
 #### Version 1.1.1
 * Der Ordner `data/` wurde bei der Installation nicht mit installiert
 
+#### Version 1.2.0
+* Output-Dateien sind nun standardmäßig formatiert (Überschriften, Spaltenbreiten)
+* Date und Time werden zu einem Feld zusammengeführt, Excel erkennt den Datentyp nun direkt
+* Sortierung ist nun in der Output-Datei voreingestellt (muss von Hand aktiviert werden)
+
 ## Installation
 ### Via brew (macOS)
 #### Schritt 1: Homebrew installieren
